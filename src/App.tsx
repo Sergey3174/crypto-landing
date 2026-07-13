@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { tariffs } from "./mocks/tariffs";
 
 const Arrow = () => (
   <span aria-hidden="true" className="text-lg leading-none">
@@ -38,6 +39,44 @@ const steps = [
   ],
 ];
 
+const dashboardTools = [
+  [
+    "01",
+    "Баланс и операции",
+    "Контролируйте поступления, комиссии и движение средств в реальном времени.",
+  ],
+  [
+    "02",
+    "Сделки и кошельки",
+    "Создавайте сделки, следите за статусами и управляйте адресами кошельков.",
+  ],
+  [
+    "03",
+    "API и Webhook",
+    "Подключайте продукт к своей системе и получайте уведомления о событиях.",
+  ],
+  [
+    "04",
+    "Аналитика",
+    "Смотрите ключевые показатели, динамику платежей и активность клиентов.",
+  ],
+];
+
+const tariffAccents = [
+  {
+    accent: "rgba(51, 133, 240, .18)",
+    glow: "radial-gradient(circle, rgba(51, 133, 240, .3) 0%, transparent 72%)",
+  },
+  {
+    accent: "rgba(32, 200, 168, .22)",
+    glow: "radial-gradient(circle, rgba(32, 200, 168, .28) 0%, transparent 72%)",
+  },
+  {
+    accent: "rgba(242, 193, 78, .22)",
+    glow: "radial-gradient(circle, rgba(242, 193, 78, .28) 0%, transparent 72%)",
+  },
+];
+
 const faqs = [
   [
     "Как быстро можно начать работу?",
@@ -56,10 +95,14 @@ const faqs = [
 function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const scrollToSection = (id: string) => {
+    setMenuOpen(false);
+    window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
+  };
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#0b111e] text-[#ebf2f5] selection:bg-[#3385f0]">
-      <nav className="relative z-30 mx-auto flex max-w-[1320px] items-center justify-between border-b border-white/[.08] bg-[#080c17] px-6 py-4 lg:px-10">
+      <nav className="sticky top-0 z-30 mx-auto flex max-w-[1320px] items-center justify-between border-b border-white/[.08] bg-[#080c17]/95 px-6 py-4 backdrop-blur lg:px-10">
         <a
           className="aurora-logo flex items-center gap-2 text-[22px] font-medium tracking-[-.8px]"
           href="#top"
@@ -67,22 +110,28 @@ function App() {
           <img src="/aurora.svg" className="h-10 w-10" alt="CryptoCloud" />
           <span className="aurora-word">CryptoCloud</span>
         </a>
-        <div className="hidden items-center gap-8 text-sm font-medium text-[#9caeb8] md:flex">
-          <a className="transition hover:text-white" href="#solutions">
+        <div className="hidden items-center gap-6 text-sm font-medium text-[#9caeb8] md:flex">
+          <a onClick={(event) => { event.preventDefault(); scrollToSection("solutions"); }} className="transition hover:text-white" href="#solutions">
             Решения
           </a>
-          <a className="transition hover:text-white" href="#how">
+          <a onClick={(event) => { event.preventDefault(); scrollToSection("how"); }} className="transition hover:text-white" href="#how">
             Как это работает
           </a>
-          <a className="transition hover:text-white" href="#faq">
+          <a onClick={(event) => { event.preventDefault(); scrollToSection("cabinet"); }} className="transition hover:text-white" href="#cabinet">
+            Кабинет
+          </a>
+          <a onClick={(event) => { event.preventDefault(); scrollToSection("tariffs"); }} className="transition hover:text-white" href="#tariffs">
+            Тарифы
+          </a>
+          <a onClick={(event) => { event.preventDefault(); scrollToSection("faq"); }} className="transition hover:text-white" href="#faq">
             Вопросы
           </a>
         </div>
         <div className="hidden items-center gap-3 md:flex">
-          <button className="rounded-xl px-5 py-2.5 text-sm font-semibold text-[#ebf2f5]">
+          <button onClick={() => scrollToSection("cabinet")} className="rounded-xl px-5 py-2.5 text-sm font-semibold text-[#ebf2f5]">
             Войти
           </button>
-          <button className="rounded-xl bg-[#245da8] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2b71cc]">
+          <button onClick={() => scrollToSection("tariffs")} className="rounded-xl bg-[#245da8] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2b71cc]">
             Начать бесплатно
           </button>
         </div>
@@ -96,10 +145,12 @@ function App() {
         {menuOpen && (
           <div className="absolute left-6 right-6 top-20 rounded-xl border border-white/10 bg-[#162338] p-5 shadow-xl md:hidden">
             <div className="flex flex-col gap-4 text-sm font-semibold">
-              <a href="#solutions">Решения</a>
-              <a href="#how">Как это работает</a>
-              <a href="#faq">Вопросы</a>
-              <button className="rounded-xl bg-[#245da8] px-5 py-3 text-white">
+              <a onClick={() => scrollToSection("solutions")} href="#solutions">Решения</a>
+              <a onClick={() => scrollToSection("how")} href="#how">Как это работает</a>
+              <a onClick={() => scrollToSection("cabinet")} href="#cabinet">Кабинет</a>
+              <a onClick={() => scrollToSection("tariffs")} href="#tariffs">Тарифы</a>
+              <a onClick={() => scrollToSection("faq")} href="#faq">Вопросы</a>
+              <button onClick={() => scrollToSection("tariffs")} className="rounded-xl bg-[#245da8] px-5 py-3 text-white">
                 Начать бесплатно
               </button>
             </div>
@@ -123,7 +174,7 @@ function App() {
               подключается, легко масштабируется, просто управляется.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <button className="flex items-center gap-3 rounded-xl bg-[#245da8] px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#2b71cc]">
+              <button onClick={() => scrollToSection("tariffs")} className="flex items-center gap-3 rounded-xl bg-[#245da8] px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#2b71cc]">
                 Создать аккаунт <Arrow />
               </button>
               <a
@@ -265,6 +316,170 @@ function App() {
                 <p className="mt-3 leading-relaxed text-[#9caeb8]">{text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-16 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[1240px] border-y border-white/[.1] py-10 md:py-14">
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
+            Как это работает
+          </p>
+          <div className="">
+            <h2 className="text-4xl max-w-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">
+              Подключите оплату один раз — всё остальное платформа сделает сама
+            </h2>
+            <p className="mt-6  text-lg leading-relaxed text-[#9caeb8]">
+              Создайте проект, добавьте удобный способ интеграции и сформируйте
+              счёт. Клиент оплачивает его в выбранной валюте, а вы сразу видите
+              статус операции и поступление средств в личном кабинете. API и
+              Webhook передают обновления в вашу систему автоматически.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="cabinet"
+        className="border-y border-white/[.08] bg-[#080c17] px-6 py-20 lg:px-10 lg:py-28"
+      >
+        <div className="mx-auto max-w-[1240px]">
+          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
+                Личный кабинет
+              </p>
+              <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+                Управляйте всем бизнесом из одного окна
+              </h2>
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-[#9caeb8]">
+                Админка CryptoCloud объединяет платежи, балансы и технические
+                настройки — без таблиц и ручной сверки.
+              </p>
+              <a
+                href="#top"
+                className="mt-8 inline-flex rounded-xl border border-white/15 bg-[#162338] px-5 py-3 text-sm font-semibold transition hover:border-[#3385f0]"
+              >
+                Посмотреть демо кабинета
+              </a>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {dashboardTools.map(([number, title, text]) => (
+                <article
+                  key={number}
+                  className="rounded-xl border border-white/[.1] bg-[#162338] p-6 transition hover:border-[#3385f0] hover:bg-[#1a2840]"
+                >
+                  <span className="text-sm font-bold text-[#589bf3]">
+                    {number}
+                  </span>
+                  <h3 className="mt-8 text-lg font-semibold">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#9caeb8]">
+                    {text}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tariffs" className="px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-[1240px]">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
+                Тарифы
+              </p>
+              <h2 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl">
+                Выберите формат работы
+              </h2>
+            </div>
+            <p className="max-w-sm text-[#9caeb8]">
+              Начните бесплатно и переходите на следующий тариф вместе с ростом
+              вашего бизнеса.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-4 lg:grid-cols-3">
+            {tariffs.items.map((tariff, index) => {
+              const version = tariff.active_version;
+              const isFree = tariff.plan_type === "free";
+              const visual = tariffAccents[index % tariffAccents.length];
+              const period = `${version.periods.count} ${version.periods.unit === "month" ? "месяц" : version.periods.unit}`;
+
+              return (
+                <article
+                  key={tariff.id}
+                  className="relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-2xl border border-white/[.1] bg-[#162338] p-7"
+                >
+                  <div
+                    className="pointer-events-none absolute -right-20 -top-20 size-56 rounded-full blur-2xl"
+                    style={{ background: visual.glow }}
+                  />
+                  <div className="relative">
+                    <div className="flex items-start justify-between">
+                      <span
+                        className="rounded-lg border border-white/10 px-3 py-1 text-xs font-semibold text-white"
+                        style={{ background: visual.accent }}
+                      >
+                        {isFree
+                          ? "Free"
+                          : tariff.purchase_mode === "repeatable"
+                            ? "Recurring"
+                            : "One-time"}
+                      </span>
+                      <span className="text-xl text-white/45">↗</span>
+                    </div>
+                    <h3 className="mt-6 text-2xl font-bold">{tariff.name}</h3>
+                    <p className="mt-2 min-h-11 text-sm leading-relaxed text-white/55">
+                      {tariff.description}
+                    </p>
+                    <div className="mt-7 flex items-baseline gap-2">
+                      <strong className="text-4xl font-bold leading-none tracking-[-.04em]">
+                        {version.price_amount} {version.currency}
+                      </strong>
+                      <span className="text-sm text-white/50">/ {period}</span>
+                    </div>
+                    <ul className="mt-7 space-y-3 rounded-xl border border-white/[.06] bg-[#0b111e]/35 p-4 text-sm text-white/80">
+                      <li className="flex items-center gap-3">
+                        <span
+                          className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
+                          style={{ background: visual.accent }}
+                        >
+                          ✓
+                        </span>
+                        {version.tokens_per_period} токенов на период
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
+                          style={{ background: visual.accent }}
+                        >
+                          ✓
+                        </span>
+                        {tariff.purchase_mode === "repeatable"
+                          ? "Повторная покупка"
+                          : "Разовая покупка"}
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
+                          style={{ background: visual.accent }}
+                        >
+                          ✓
+                        </span>
+                        {period}
+                      </li>
+                    </ul>
+                  </div>
+                  <button className="relative mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245da8] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#2b71cc]">
+                    {isFree
+                      ? "Попробовать бесплатно"
+                      : `Купить ${version.price_amount} ${version.currency}`}{" "}
+                    <Arrow />
+                  </button>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

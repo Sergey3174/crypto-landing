@@ -4,6 +4,7 @@
 @theme { --font-sans: "Plus Jakarta Sans", "Arial", sans-serif; }
 
 html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 84px; }
 body { margin: 0; min-width: 320px; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
