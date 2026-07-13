@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme { --font-sans: "Plus Jakarta Sans", "Arial", sans-serif; }
+
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+
+.aurora-word {
+  color: #9caeb8;
+  background: linear-gradient(100.06deg, #20de99 6.97%, #7db1f5 27.63%, #5a9ef6 49.36%, #9caeb8 50.11%, #9caeb8 87.87%);
+  background-size: 240% 100%;
+  background-position: left;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Accent utilities used across the landing inherit the Aurora logo gradient. */
+.text-\[\#3385f0\],
+.text-\[\#589bf3\] {
+  background: linear-gradient(100.06deg, #20de99 6.97%, #7db1f5 49.36%, #5a9ef6 87.87%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
