@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { tariffs } from "./mocks/tariffs";
+import API_IMAGE from "./assets/api.png";
 
 const Arrow = () => (
   <span aria-hidden="true" className="text-lg leading-none">
@@ -11,7 +12,7 @@ const features = [
   {
     icon: "◌",
     title: "Мгновенные платежи",
-    text: "Принимайте оплату из любой точки мира — средства поступают без ожидания банковских дней.",
+    text: "Приём депозитов из любой точки мира — средства поступают моментально",
   },
   {
     icon: "⌘",
@@ -21,7 +22,7 @@ const features = [
   {
     icon: "⌁",
     title: "Прозрачная аналитика",
-    text: "Следите за операциями, балансом и статусами платежей в одном кабинете.",
+    text: "Следите за операциями, балансом, статусами депозитов и результатами AML-проверки в одном кабинете",
   },
 ];
 
@@ -34,7 +35,7 @@ const steps = [
   ],
   [
     "03",
-    "Принимайте платежи",
+    "Принимайте депозиты",
     "Получайте уведомления и управляйте финансами в кабинете.",
   ],
 ];
@@ -59,6 +60,11 @@ const dashboardTools = [
     "04",
     "Аналитика",
     "Смотрите ключевые показатели, динамику платежей и активность клиентов.",
+  ],
+  [
+    "05",
+    "AML-проверка",
+    "Каждый депозит автоматически проходит AML-проверку перед обработкой.",
   ],
 ];
 
@@ -90,6 +96,10 @@ const faqs = [
     "Есть ли комиссия за подключение?",
     "Подключение и создание аккаунта бесплатны. Условия обработки платежей зависят от выбранного тарифа.",
   ],
+  [
+    "В каких сетях мы принимаем депозиты?",
+    "Мы принимаем депозиты в сетях USDT TRC20, USDT ERC20 и USDT BEP20.",
+  ],
 ];
 
 function App() {
@@ -97,7 +107,13 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const scrollToSection = (id: string) => {
     setMenuOpen(false);
-    window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
+    window.setTimeout(
+      () =>
+        document
+          .getElementById(id)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      0,
+    );
   };
 
   return (
@@ -111,27 +127,68 @@ function App() {
           <span className="aurora-word">CryptoCloud</span>
         </a>
         <div className="hidden items-center gap-6 text-sm font-medium text-[#9caeb8] md:flex">
-          <a onClick={(event) => { event.preventDefault(); scrollToSection("solutions"); }} className="transition hover:text-white" href="#solutions">
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection("solutions");
+            }}
+            className="transition hover:text-white"
+            href="#solutions"
+          >
             Решения
           </a>
-          <a onClick={(event) => { event.preventDefault(); scrollToSection("how"); }} className="transition hover:text-white" href="#how">
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection("how");
+            }}
+            className="transition hover:text-white"
+            href="#how"
+          >
             Как это работает
           </a>
-          <a onClick={(event) => { event.preventDefault(); scrollToSection("cabinet"); }} className="transition hover:text-white" href="#cabinet">
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection("cabinet");
+            }}
+            className="transition hover:text-white"
+            href="#cabinet"
+          >
             Кабинет
           </a>
-          <a onClick={(event) => { event.preventDefault(); scrollToSection("tariffs"); }} className="transition hover:text-white" href="#tariffs">
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection("tariffs");
+            }}
+            className="transition hover:text-white"
+            href="#tariffs"
+          >
             Тарифы
           </a>
-          <a onClick={(event) => { event.preventDefault(); scrollToSection("faq"); }} className="transition hover:text-white" href="#faq">
+          <a
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection("faq");
+            }}
+            className="transition hover:text-white"
+            href="#faq"
+          >
             Вопросы
           </a>
         </div>
         <div className="hidden items-center gap-3 md:flex">
-          <button onClick={() => scrollToSection("cabinet")} className="rounded-xl px-5 py-2.5 text-sm font-semibold text-[#ebf2f5]">
+          <button
+            onClick={() => scrollToSection("cabinet")}
+            className="rounded-xl px-5 py-2.5 text-sm font-semibold text-[#ebf2f5]"
+          >
             Войти
           </button>
-          <button onClick={() => scrollToSection("tariffs")} className="rounded-xl bg-[#245da8] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2b71cc]">
+          <button
+            onClick={() => scrollToSection("tariffs")}
+            className="rounded-xl bg-[#245da8] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2b71cc]"
+          >
             Начать бесплатно
           </button>
         </div>
@@ -145,12 +202,25 @@ function App() {
         {menuOpen && (
           <div className="absolute left-6 right-6 top-20 rounded-xl border border-white/10 bg-[#162338] p-5 shadow-xl md:hidden">
             <div className="flex flex-col gap-4 text-sm font-semibold">
-              <a onClick={() => scrollToSection("solutions")} href="#solutions">Решения</a>
-              <a onClick={() => scrollToSection("how")} href="#how">Как это работает</a>
-              <a onClick={() => scrollToSection("cabinet")} href="#cabinet">Кабинет</a>
-              <a onClick={() => scrollToSection("tariffs")} href="#tariffs">Тарифы</a>
-              <a onClick={() => scrollToSection("faq")} href="#faq">Вопросы</a>
-              <button onClick={() => scrollToSection("tariffs")} className="rounded-xl bg-[#245da8] px-5 py-3 text-white">
+              <a onClick={() => scrollToSection("solutions")} href="#solutions">
+                Решения
+              </a>
+              <a onClick={() => scrollToSection("how")} href="#how">
+                Как это работает
+              </a>
+              <a onClick={() => scrollToSection("cabinet")} href="#cabinet">
+                Кабинет
+              </a>
+              <a onClick={() => scrollToSection("tariffs")} href="#tariffs">
+                Тарифы
+              </a>
+              <a onClick={() => scrollToSection("faq")} href="#faq">
+                Вопросы
+              </a>
+              <button
+                onClick={() => scrollToSection("tariffs")}
+                className="rounded-xl bg-[#245da8] px-5 py-3 text-white"
+              >
                 Начать бесплатно
               </button>
             </div>
@@ -166,35 +236,47 @@ function App() {
         <div className="relative grid items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
           <div>
             <h1 className="max-w-3xl text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-6xl lg:text-7xl">
-              Платежи, которые <span className="text-[#3385f0]">двигают</span>{" "}
-              бизнес вперёд
+              Автоматический сервис обработки{" "}
+              <span className="text-[#3385f0]">депозитов в криптовалюте</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#9caeb8]">
-              Единая платформа для приёма цифровых платежей. Быстро
-              подключается, легко масштабируется, просто управляется.
+              Единая платформа обработки депозитов в криптовалюте. Быстрое
+              подключение, лёгкое масштабирование, простое управление.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <button onClick={() => scrollToSection("tariffs")} className="flex items-center gap-3 rounded-xl bg-[#245da8] px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#2b71cc]">
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://admin-crypto-invoices.leverageindo.group",
+                    "_blank",
+                    "noopener,noreferrer",
+                  )
+                }
+                className="flex items-center gap-3 rounded-xl bg-[#245da8] px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#2b71cc]"
+              >
                 Создать аккаунт <Arrow />
               </button>
               <a
-                href="#solutions"
                 className="rounded-xl border border-white/15 bg-[#162338] px-6 py-4 text-sm font-semibold transition hover:border-[#3385f0]"
+                onClick={(event) => {
+                  event.preventDefault();
+                  scrollToSection("solutions");
+                }}
               >
                 Посмотреть возможности
               </a>
             </div>
             <div className="mt-11 flex items-center gap-8 text-sm text-[#9caeb8]">
               <div>
-                <b className="block text-xl text-[#ebf2f5]">99.9%</b>доступность
+                <b className="block text-xl text-[#ebf2f5]">USDT TRC20</b>
               </div>
               <div className="h-9 w-px bg-white/15" />
               <div>
-                <b className="block text-xl text-[#ebf2f5]">24/7</b>поддержка
+                <b className="block text-xl text-[#ebf2f5]">USDT ERC20</b>
               </div>
               <div className="h-9 w-px bg-white/15" />
               <div>
-                <b className="block text-xl text-[#ebf2f5]">10+</b>активов
+                <b className="block text-xl text-[#ebf2f5]">USDT BEP20</b>
               </div>
             </div>
           </div>
@@ -258,10 +340,10 @@ function App() {
           </p>
           <div className="mt-5 flex flex-col justify-between gap-6 md:flex-row">
             <h2 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              Приём платежей без лишней сложности
+              Автоматическая обработка депозитов без лишней сложности
             </h2>
             <p className="max-w-sm text-[#9caeb8]">
-              Инструменты для онлайн-магазинов, сервисов и цифровых продуктов.
+              Инструмент для автоматического приёма депозитов
             </p>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
@@ -294,10 +376,10 @@ function App() {
                 Три шага
               </p>
               <h2 className="mt-5 max-w-lg text-4xl font-semibold tracking-tight sm:text-5xl">
-                От регистрации до первого платежа
+                От регистрации до первого депозита
               </h2>
             </div>
-            <p className="self-end max-w-md text-lg leading-relaxed text-[#9caeb8]">
+            <p className="self-end italic max-w-md text-lg leading-relaxed text-[#9caeb8]">
               Понятный процесс для команд любого размера. Никаких сложных
               настроек и долгого ожидания.
             </p>
@@ -325,9 +407,10 @@ function App() {
           <p className="mb-5 text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
             Как это работает
           </p>
-          <div className="">
+          <div>
             <h2 className="text-4xl max-w-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">
-              Подключите оплату один раз — всё остальное платформа сделает сама
+              Подключите прием депозитов один раз — всё остальное платформа
+              сделает сама
             </h2>
             <p className="mt-6  text-lg leading-relaxed text-[#9caeb8]">
               Создайте проект, добавьте удобный способ интеграции и сформируйте
@@ -335,6 +418,13 @@ function App() {
               статус операции и поступление средств в личном кабинете. API и
               Webhook передают обновления в вашу систему автоматически.
             </p>
+          </div>
+          <div className="mt-10 overflow-hidden rounded-xl border border-white/[.1] bg-[#0b1120] shadow-[0_24px_70px_rgba(0,0,0,.28)] md:mt-14">
+            <img
+              src={API_IMAGE}
+              alt="Интерфейс подключения API и Webhook"
+              className="h-auto w-full"
+            />
           </div>
         </div>
       </section>
@@ -350,7 +440,7 @@ function App() {
                 Личный кабинет
               </p>
               <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                Управляйте всем бизнесом из одного окна
+                Управляйте всеми депозитами из одного окна
               </h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-[#9caeb8]">
                 Админка CryptoCloud объединяет платежи, балансы и технические
@@ -400,86 +490,183 @@ function App() {
             </p>
           </div>
           <div className="mt-14 grid gap-4 lg:grid-cols-3">
-            {tariffs.items.map((tariff, index) => {
-              const version = tariff.active_version;
-              const isFree = tariff.plan_type === "free";
-              const visual = tariffAccents[index % tariffAccents.length];
-              const period = `${version.periods.count} ${version.periods.unit === "month" ? "месяц" : version.periods.unit}`;
+            {tariffs.items
+              .filter((item) => item.plan_type !== "free")
+              .map((tariff, index) => {
+                const version = tariff.active_version;
+                const isFree = tariff.plan_type === "free";
+                const visual = tariffAccents[index % tariffAccents.length];
+                const period = `${version.periods.count} ${version.periods.unit === "month" ? "месяц" : version.periods.unit}`;
 
-              return (
-                <article
-                  key={tariff.id}
-                  className="relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-2xl border border-white/[.1] bg-[#162338] p-7"
-                >
-                  <div
-                    className="pointer-events-none absolute -right-20 -top-20 size-56 rounded-full blur-2xl"
-                    style={{ background: visual.glow }}
-                  />
-                  <div className="relative">
-                    <div className="flex items-start justify-between">
-                      <span
-                        className="rounded-lg border border-white/10 px-3 py-1 text-xs font-semibold text-white"
-                        style={{ background: visual.accent }}
-                      >
-                        {isFree
-                          ? "Free"
-                          : tariff.purchase_mode === "repeatable"
-                            ? "Recurring"
-                            : "One-time"}
-                      </span>
-                      <span className="text-xl text-white/45">↗</span>
+                return (
+                  <article
+                    key={tariff.id}
+                    className="relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-2xl border border-white/[.1] bg-[#162338] p-7"
+                  >
+                    <div
+                      className="pointer-events-none absolute -right-20 -top-20 size-56 rounded-full blur-2xl"
+                      style={{ background: visual.glow }}
+                    />
+                    <div className="relative">
+                      <div className="flex items-start justify-between">
+                        <span
+                          className="rounded-lg border border-white/10 px-3 py-1 text-xs font-semibold text-white"
+                          style={{ background: visual.accent }}
+                        >
+                          {isFree
+                            ? "Free"
+                            : tariff.purchase_mode === "repeatable"
+                              ? "Recurring"
+                              : "One-time"}
+                        </span>
+                        <span className="text-xl text-white/45">↗</span>
+                      </div>
+                      <h3 className="mt-6 text-2xl font-bold">{tariff.name}</h3>
+                      <p className="mt-2 min-h-11 text-sm leading-relaxed text-white/55">
+                        {tariff.description}
+                      </p>
+                      <div className="mt-7 flex items-baseline gap-2">
+                        <strong className="text-4xl font-bold leading-none tracking-[-.04em]">
+                          {version.price_amount} {version.currency}
+                        </strong>
+                        <span className="text-sm text-white/50">
+                          / {period}
+                        </span>
+                      </div>
+                      <ul className="mt-7 space-y-3 rounded-xl border border-white/[.06] bg-[#0b111e]/35 p-4 text-sm text-white/80">
+                        <li className="flex items-center gap-3">
+                          <span
+                            className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
+                            style={{ background: visual.accent }}
+                          >
+                            ✓
+                          </span>
+                          {version.tokens_per_period} токенов на период
+                        </li>
+                        {/* <li className="flex items-center gap-3">
+                          <span
+                            className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
+                            style={{ background: visual.accent }}
+                          >
+                            ✓
+                          </span>
+                          {tariff.purchase_mode === "repeatable"
+                            ? "Повторная покупка"
+                            : "Разовая покупка"}
+                        </li> */}
+                        <li className="flex items-center gap-3">
+                          <span
+                            className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
+                            style={{ background: visual.accent }}
+                          >
+                            ✓
+                          </span>
+                          {period}
+                        </li>
+                      </ul>
                     </div>
-                    <h3 className="mt-6 text-2xl font-bold">{tariff.name}</h3>
-                    <p className="mt-2 min-h-11 text-sm leading-relaxed text-white/55">
-                      {tariff.description}
-                    </p>
-                    <div className="mt-7 flex items-baseline gap-2">
-                      <strong className="text-4xl font-bold leading-none tracking-[-.04em]">
-                        {version.price_amount} {version.currency}
-                      </strong>
-                      <span className="text-sm text-white/50">/ {period}</span>
-                    </div>
-                    <ul className="mt-7 space-y-3 rounded-xl border border-white/[.06] bg-[#0b111e]/35 p-4 text-sm text-white/80">
-                      <li className="flex items-center gap-3">
-                        <span
-                          className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
-                          style={{ background: visual.accent }}
-                        >
-                          ✓
-                        </span>
-                        {version.tokens_per_period} токенов на период
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <span
-                          className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
-                          style={{ background: visual.accent }}
-                        >
-                          ✓
-                        </span>
-                        {tariff.purchase_mode === "repeatable"
-                          ? "Повторная покупка"
-                          : "Разовая покупка"}
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <span
-                          className="grid size-[18px] place-items-center rounded-full border border-white/10 text-xs"
-                          style={{ background: visual.accent }}
-                        >
-                          ✓
-                        </span>
-                        {period}
-                      </li>
-                    </ul>
-                  </div>
-                  <button className="relative mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245da8] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#2b71cc]">
-                    {isFree
-                      ? "Попробовать бесплатно"
-                      : `Купить ${version.price_amount} ${version.currency}`}{" "}
-                    <Arrow />
-                  </button>
-                </article>
-              );
-            })}
+                    <button className="relative mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245da8] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#2b71cc]">
+                      {isFree
+                        ? "Попробовать бесплатно"
+                        : `Купить ${version.price_amount} ${version.currency}`}{" "}
+                      <Arrow />
+                    </button>
+                  </article>
+                );
+              })}
+          </div>
+          <div className="relative mt-8 overflow-hidden rounded-2xl  bg-gradient-to-r from-[#007047] via-[#018ec5] to-[#05397e] px-6 py-5 text-center shadow-[0_16px_45px_rgba(47,150,221,.3)]">
+            <div className="pointer-events-none absolute -left-8 top-1/2 size-28 -translate-y-1/2 rounded-full bg-white/25 blur-3xl" />
+            <div className="pointer-events-none absolute -right-8 top-1/2 size-28 -translate-y-1/2 rounded-full bg-[#057bb9]/20 blur-3xl" />
+            <p className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-base font-semibold text-[#eeeeee] sm:text-lg">
+              Зарегистрируйтесь и получите
+              <span className="font-extrabold text-[#e6e6e6]">200 токенов</span>
+              на тестирование в подарок
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/[.08] bg-[#080c17] px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-[1240px]">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
+              Прозрачные условия
+            </p>
+            <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+              Принцип работы и стоимость
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-4 lg:grid-cols-2">
+            <article className="rounded-2xl border border-white/[.1] bg-[#162338] p-7 sm:p-8">
+              <span className="grid size-12 place-items-center rounded-xl bg-[#203d65] text-xl text-[#7db1f5]">
+                %
+              </span>
+              <h3 className="mt-8 text-2xl font-semibold">
+                Стоимость приема депозитов
+              </h3>
+              <p className="mt-4 text-xl font-semibold text-[#7db1f5]">
+                Комиссия за прием депозитов — 0%.
+              </p>
+              <p className="mt-4 leading-relaxed text-[#9caeb8]">
+                Вы платите только за API-токены. Сервис работает на основе
+                API-токенов.
+              </p>
+            </article>
+
+            <article className="rounded-2xl border border-white/[.1] bg-[#162338] p-7 sm:p-8">
+              <span className="grid size-12 place-items-center rounded-xl bg-[#203d65] text-xl text-[#7db1f5]">
+                ◈
+              </span>
+              <h3 className="mt-8 text-2xl font-semibold">
+                Прямой доступ к кошелькам и аккумуляции
+              </h3>
+              <p className="mt-4 leading-relaxed text-[#9caeb8]">
+                Мы не храним ваши средства у себя — у вас всегда остается прямой
+                доступ к кошелькам. Вы можете подключить свой кошелек к любому
+                крипто кошельку и в любой момент вывести свои средства.
+              </p>
+            </article>
+          </div>
+
+          <div className="mt-16 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
+                Как происходит прием депозита
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {[
+              ["01", "Создание счета", "Вы создаете счет для приема депозита."],
+              [
+                "02",
+                "Поступление депозита",
+                "Депозит поступает на один из ваших кошельков.",
+              ],
+              ["03", "AML-проверка", "Транзакция проходит AML-проверку."],
+              [
+                "04",
+                "Аккумуляция средств",
+                "Если AML-проверка пройдена успешно, средства автоматически аккумулируются на одном из ваших кошельков.",
+              ],
+            ].map(([number, title, text]) => (
+              <article
+                key={number}
+                className="relative min-h-64 overflow-hidden rounded-2xl border border-white/[.1] bg-[#162338] p-6"
+              >
+                <span className="text-sm font-bold text-[#7db1f5]">
+                  {number}
+                </span>
+                <div className="my-10 h-px bg-white/10" />
+                <h4 className="text-xl font-semibold">{title}</h4>
+                <p className="mt-3 text-sm leading-relaxed text-[#9caeb8]">
+                  {text}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
