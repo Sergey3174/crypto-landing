@@ -530,7 +530,9 @@ function App() {
                               ? "Recurring"
                               : "One-time"}
                         </span>
-                        <span className="text-xl text-white/45">↗</span>
+                        <span className="text-xl text-white/45">
+                          <Arrow />
+                        </span>
                       </div>
                       <h3 className="mt-6 text-2xl font-bold">{tariff.name}</h3>
                       <p className="mt-2 min-h-11 text-sm leading-relaxed text-white/55">
