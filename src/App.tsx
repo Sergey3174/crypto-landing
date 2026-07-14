@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { tariffs } from "./mocks/tariffs";
 import API_IMAGE from "./assets/api.png";
+import BG from "./assets/BG.png";
+import TRC from "./assets/TRC-20.svg";
+import BEP from "./assets/BEP-20.svg";
+import ERC from "./assets/ERC-20.svg";
 
 const Arrow = () => (
   <span aria-hidden="true" className="text-lg leading-none">
@@ -11,60 +15,56 @@ const Arrow = () => (
 const features = [
   {
     icon: "◌",
-    title: "Мгновенные депозиты",
-    text: "Приём депозитов из любой точки мира — средства поступают моментально",
+    title: "Instant deposits",
+    text: "Accept deposits from anywhere in the world — funds arrive instantly.",
   },
   {
     icon: "⌘",
-    title: "Простая интеграция",
-    text: "Готовые модули, API и понятная документация для запуска за несколько минут.",
+    title: "Simple integration",
+    text: "Ready-made modules, API, and clear documentation to get started in minutes.",
   },
   {
     icon: "⌁",
-    title: "Прозрачная аналитика",
-    text: "Следите за операциями, балансом, статусами депозитов и результатами AML-проверки в одном кабинете",
+    title: "Clear analytics",
+    text: "Track transactions, balances, deposit statuses, and AML check results in one dashboard.",
   },
 ];
 
 const steps = [
-  ["01", "Создайте аккаунт", "Зарегистрируйтесь и добавьте свой проект."],
-  [
-    "02",
-    "Выберите тариф",
-    "Выберите тариф, соответствующий вашим потребностям.",
-  ],
+  ["01", "Create an account", "Sign up and add your project."],
+  ["02", "Choose a plan", "Choose the plan that suits your needs."],
   [
     "03",
-    "Принимайте депозиты",
-    "Получайте уведомления и управляйте финансами в кабинете.",
+    "Accept deposits",
+    "Receive notifications and manage your finances in the dashboard.",
   ],
 ];
 
 const dashboardTools = [
   [
     "01",
-    "Баланс и операции",
-    "Контролируйте поступления, токены и движение средств в реальном времени.",
+    "Balance and transactions",
+    "Monitor incoming funds, tokens, and cash flow in real time.",
   ],
   [
     "02",
-    "Сделки и кошельки",
-    "Создавайте сделки, следите за статусами и управляйте адресами кошельков.",
+    "Deals and wallets",
+    "Create deals, track statuses, and manage wallet addresses.",
   ],
   [
     "03",
-    "API и Webhook",
-    "Подключайте продукт к своей системе и получайте уведомления о событиях.",
+    "API and webhooks",
+    "Connect the product to your system and receive event notifications.",
   ],
   [
     "04",
-    "Аналитика",
-    "Смотрите ключевые показатели, динамику депозитов и активность клиентов.",
+    "Analytics",
+    "View key metrics, deposit trends, and customer activity.",
   ],
   [
     "05",
-    "AML-проверка",
-    "Каждый депозит автоматически проходит AML-проверку перед обработкой.",
+    "AML check",
+    "Every deposit is automatically checked for AML compliance before processing.",
   ],
 ];
 
@@ -85,28 +85,28 @@ const tariffAccents = [
 
 const faqs = [
   [
-    "Как быстро можно начать работу?",
-    "Обычно подключение занимает несколько минут: создайте проект, выберите удобный способ интеграции и сформируйте первую платёжную ссылку.",
+    "How quickly can I get started?",
+    "Setup usually takes just a few minutes: create a project, choose an integration method, and generate your first payment link.",
   ],
   [
-    "Какие способы интеграции доступны?",
-    "Можно использовать API, готовые CMS-модули или платёжные ссылки для быстрых продаж без разработки.",
+    "Which integration methods are available?",
+    "You can use the API, ready-made CMS modules, or payment links to start selling quickly without development.",
   ],
   [
-    "Есть ли комиссия за подключение?",
-    "Подключение и создание аккаунта бесплатны. Условия обработки депозитов зависят от выбранного тарифа.",
+    "Is there an integration fee?",
+    "Account creation and integration are free. Deposit processing terms depend on your selected plan.",
   ],
   [
-    "В каких сетях мы принимаем депозиты?",
-    "Мы принимаем депозиты в сетях USDT TRC20, USDT ERC20 и USDT BEP20.",
+    "Which networks do you accept deposits in?",
+    "We accept deposits via USDT TRC20, USDT ERC20, and USDT BEP20.",
   ],
   [
-    "Могу ли я получить прямой доступ к одному из своих кошельков в админ панели?",
-    "Да, в админ панели вы можете получить сид-фразу или апи-ключ от выбранного вами кошелька",
+    "Can I get direct access to one of my wallets in the dashboard?",
+    "Yes, you can retrieve the seed phrase or API key for your selected wallet in the dashboard.",
   ],
   [
-    "Что будет если депозит не пройдет AML-проверку?",
-    "1. Данный кошелек не будет участвовать в приеме депозитов.\n2. Вы получите уведомление, что депозит не прошел AML-проверку. Мы советуем подключить данный кошелек к вашему крипто-приложению и вернуть депозит отправителю.",
+    "What happens if a deposit fails the AML check?",
+    "1. This wallet will no longer be used to accept deposits.\n2. You will be notified that the deposit failed the AML check. We recommend connecting this wallet to your crypto app and returning the deposit to the sender.",
   ],
 ];
 
@@ -121,6 +121,13 @@ function App() {
           .getElementById(id)
           ?.scrollIntoView({ behavior: "smooth", block: "start" }),
       0,
+    );
+  };
+  const handleOpen = () => {
+    window.open(
+      "https://admin-crypto-invoices.leverageindo.group",
+      "_blank",
+      "noopener,noreferrer",
     );
   };
 
@@ -143,7 +150,7 @@ function App() {
             className="transition hover:text-white"
             href="#solutions"
           >
-            Решения
+            Solutions
           </a>
           <a
             onClick={(event) => {
@@ -153,7 +160,7 @@ function App() {
             className="transition hover:text-white"
             href="#how"
           >
-            Как это работает
+            How it works
           </a>
           <a
             onClick={(event) => {
@@ -163,7 +170,7 @@ function App() {
             className="transition hover:text-white"
             href="#cabinet"
           >
-            Кабинет
+            Dashboard
           </a>
           <a
             onClick={(event) => {
@@ -173,7 +180,7 @@ function App() {
             className="transition hover:text-white"
             href="#tariffs"
           >
-            Тарифы
+            Pricing
           </a>
           <a
             onClick={(event) => {
@@ -183,27 +190,27 @@ function App() {
             className="transition hover:text-white"
             href="#faq"
           >
-            Вопросы
+            FAQ
           </a>
         </div>
         <div className="hidden items-center gap-3 md:flex">
           <button
-            onClick={() => scrollToSection("cabinet")}
+            onClick={handleOpen}
             className="rounded-xl px-5 py-2.5 text-sm font-semibold text-[#ebf2f5]"
           >
-            Войти
+            Sign in
           </button>
           <button
-            onClick={() => scrollToSection("tariffs")}
+            onClick={handleOpen}
             className="rounded-xl bg-[#245da8] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2b71cc]"
           >
-            Начать бесплатно
+            Start for free
           </button>
         </div>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="grid size-10 place-items-center rounded-xl border border-white/20 text-xl md:hidden"
-          aria-label="Открыть меню"
+          aria-label="Open menu"
         >
           ☰
         </button>
@@ -211,25 +218,25 @@ function App() {
           <div className="absolute left-6 right-6 top-20 rounded-xl border border-white/10 bg-[#162338] p-5 shadow-xl md:hidden">
             <div className="flex flex-col gap-4 text-sm font-semibold">
               <a onClick={() => scrollToSection("solutions")} href="#solutions">
-                Решения
+                Solutions
               </a>
               <a onClick={() => scrollToSection("how")} href="#how">
-                Как это работает
+                How it works
               </a>
               <a onClick={() => scrollToSection("cabinet")} href="#cabinet">
-                Кабинет
+                Dashboard
               </a>
               <a onClick={() => scrollToSection("tariffs")} href="#tariffs">
-                Тарифы
+                Pricing
               </a>
               <a onClick={() => scrollToSection("faq")} href="#faq">
-                Вопросы
+                FAQ
               </a>
               <button
-                onClick={() => scrollToSection("tariffs")}
+                onClick={handleOpen}
                 className="rounded-xl bg-[#245da8] px-5 py-3 text-white"
               >
-                Начать бесплатно
+                Start for free
               </button>
             </div>
           </div>
@@ -244,25 +251,19 @@ function App() {
         <div className="relative grid items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
           <div>
             <h1 className="max-w-3xl text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-6xl lg:text-7xl">
-              Автоматический сервис обработки{" "}
-              <span className="text-[#3385f0]">депозитов в криптовалюте</span>
+              Automated service for processing{" "}
+              <span className="text-[#3385f0]">crypto deposits</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#9caeb8]">
-              Единая платформа обработки депозитов в криптовалюте. Быстрое
-              подключение, лёгкое масштабирование, простое управление.
+              A single platform for processing crypto deposits. Fast setup,
+              effortless scaling, and simple management.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <button
-                onClick={() =>
-                  window.open(
-                    "https://admin-crypto-invoices.leverageindo.group",
-                    "_blank",
-                    "noopener,noreferrer",
-                  )
-                }
+                onClick={handleOpen}
                 className="flex items-center gap-3 rounded-xl bg-[#245da8] px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#2b71cc]"
               >
-                Создать аккаунт <Arrow />
+                Create an account <Arrow />
               </button>
               <a
                 className="rounded-xl border border-white/15 bg-[#162338] px-6 py-4 text-sm font-semibold transition hover:border-[#3385f0]"
@@ -271,69 +272,45 @@ function App() {
                   scrollToSection("solutions");
                 }}
               >
-                Посмотреть возможности
+                Explore features
               </a>
             </div>
-            <div className="mt-11 flex items-center gap-8 text-sm text-[#9caeb8]">
-              <div>
-                <b className="block text-xl text-[#ebf2f5]">USDT TRC20</b>
+            <div className="mt-11 flex flex-wrap items-center gap-4 text-sm text-[#9caeb8] sm:gap-8">
+              <div className="flex items-center gap-2.5">
+                <img src={TRC} alt="TRC20" className="size-8" />
+                <b className="block text-base text-[#ebf2f5] sm:text-xl">
+                  USDT TRC20
+                </b>
               </div>
-              <div className="h-9 w-px bg-white/15" />
-              <div>
-                <b className="block text-xl text-[#ebf2f5]">USDT ERC20</b>
+              <div className="hidden h-9 w-px bg-white/15 sm:block" />
+              <div className="flex items-center gap-2.5">
+                <img src={ERC} alt="ERC20" className="size-8" />
+                <b className="block text-base text-[#ebf2f5] sm:text-xl">
+                  USDT ERC20
+                </b>
               </div>
-              <div className="h-9 w-px bg-white/15" />
-              <div>
-                <b className="block text-xl text-[#ebf2f5]">USDT BEP20</b>
+              <div className="hidden h-9 w-px bg-white/15 sm:block" />
+              <div className="flex items-center gap-2.5">
+                <img src={BEP} alt="BEP20" className="size-8" />
+                <b className="block text-base text-[#ebf2f5] sm:text-xl">
+                  USDT BEP20
+                </b>
               </div>
             </div>
           </div>
-          <div className="relative mx-auto w-full max-w-[520px]">
-            <div className="absolute -inset-7 rounded-[2rem] bg-gradient-to-br from-[#007047]/50 via-[#018ec5]/50 to-[#05397e]/50 blur-2xl" />
-            <div className="relative rounded-2xl border border-white/[.12] bg-[#162338] p-5 shadow-2xl sm:p-7">
-              <div className="flex items-center justify-between border-b border-white/10 pb-5 text-sm text-[#9caeb8]">
-                <span className="flex items-center gap-2">
-                  <i className="size-2 rounded-full bg-[#3385f0]" />
-                  Обзор депозитов
-                </span>
-              </div>
-              <div className="py-8">
-                <p className="text-sm text-[#9caeb8]">Баланс проекта</p>
-                <p className="mt-1 text-4xl font-semibold tracking-tight text-[#ebf2f5]">
-                  $ 28,450.32
-                </p>
-                <p className="mt-2 text-sm text-[#35b084]">
-                  ↗ +18.4% за этот месяц
-                </p>
-              </div>
-              <div className="rounded-xl border border-white/[.1] bg-[#1a2840] p-5 text-[#ebf2f5]">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs text-[#9caeb8]">Последняя операция</p>
-                    <p className="mt-1 font-semibold">Invoice #84291</p>
-                  </div>
-                  <span className="rounded-md bg-[#05573a] px-3 py-1 text-xs font-bold text-[#bbE4d5]">
-                    Успешно
-                  </span>
-                </div>
-                <div className="mt-5 flex items-end gap-2">
-                  {[38, 54, 43, 70, 61, 91, 78, 106, 92, 123].map(
-                    (height, i) => (
-                      <span
-                        key={i}
-                        style={{ height }}
-                        className="w-full rounded-sm bg-gradient-to-t from-[#3385f0] to-[#7db1f5]"
-                      />
-                    ),
-                  )}
-                </div>
-              </div>
-              <div className="mt-5 grid grid-cols-3 gap-3 text-center text-xs text-[#9caeb8]">
-                <div className="rounded-lg bg-[#1a2840] py-3">USDT</div>
-                <div className="rounded-lg bg-[#1a2840] py-3">BTC</div>
-                <div className="rounded-lg bg-[#1a2840] py-3">ETH</div>
-              </div>
+          <div className="relative isolate mx-auto w-full max-w-[520px]">
+            <div className="relative h-full w-full overflow-hidden">
+              <img
+                src={BG}
+                alt="Crypto deposit platform illustration"
+                className="h-auto w-full"
+              />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-[22%] bg-gradient-to-b from-[#0b111e] via-[#0b111e]/75 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-t from-[#0b111e] via-[#0b111e]/75 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-[16%] bg-gradient-to-r from-[#0b111e] via-[#0b111e]/75 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-[16%] bg-gradient-to-l from-[#0b111e] via-[#0b111e]/75 to-transparent" />
             </div>
+            <div className="absolute -inset-7  rounded-full bg-gradient-to-br from-[#007047]/25 via-[#018ec5]/25 to-[#05397e]/25 blur-2xl" />
           </div>
         </div>
       </section>
@@ -344,21 +321,21 @@ function App() {
       >
         <div className="mx-auto max-w-[1240px]">
           <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-            Всё необходимое
+            Everything you need
           </p>
           <div className="mt-5 flex flex-col justify-between gap-6 md:flex-row">
             <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              Автоматическая обработка депозитов без лишней сложности
+              Automated deposit processing without unnecessary complexity
             </h2>
             <p className="max-w-sm text-[#9caeb8] italic">
-              Инструмент для автоматического приёма депозитов
+              A tool for automated deposit acceptance
             </p>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {features.map((item) => (
               <article
                 key={item.title}
-                className="group rounded-xl border border-white/[.1] bg-[#162338] p-7 transition hover:-translate-y-1 hover:border-[#3385f0] hover:bg-[#1a2840]"
+                className="group rounded-xl flex flex-col border border-white/[.1] bg-[#162338] p-7 transition hover:-translate-y-1 hover:border-[#3385f0] hover:bg-[#1a2840]"
               >
                 <span className="flex size-12 items-center justify-center rounded-lg bg-[#20304d] text-2xl leading-none text-[#7db1f5]">
                   {item.icon}
@@ -367,9 +344,14 @@ function App() {
                 <p className="mt-3 leading-relaxed text-[#9caeb8]">
                   {item.text}
                 </p>
-                <button className="mt-7 flex items-center gap-2 text-sm font-semibold text-[#589bf3]">
-                  Узнать больше <Arrow />
-                </button>
+                <div className="mt-auto">
+                  <button
+                    onClick={handleOpen}
+                    className="mt-7 flex items-center gap-2 text-sm font-semibold text-[#589bf3]"
+                  >
+                    Learn more <Arrow />
+                  </button>
+                </div>
               </article>
             ))}
           </div>
@@ -381,15 +363,15 @@ function App() {
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-                Три шага
+                Three steps
               </p>
               <h2 className="mt-5 max-w-lg text-4xl font-semibold tracking-tight sm:text-5xl">
-                От регистрации до первого депозита
+                From sign-up to your first deposit
               </h2>
             </div>
             <p className="self-end italic max-w-md text-lg leading-relaxed text-[#9caeb8]">
-              Понятный процесс для команд любого размера. Никаких сложных
-              настроек и долгого ожидания.
+              A clear process for teams of any size. No complicated setup or
+              long waits.
             </p>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
@@ -413,23 +395,24 @@ function App() {
       <section className="px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-[1240px] border-y border-white/[.1] py-10 md:py-14">
           <p className="mb-5 text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-            Как это работает
+            How it works
           </p>
           <div>
             <h2 className="text-4xl max-w-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">
-              Подключите систему один раз
+              Connect your system once
             </h2>
             <p className="mt-6  text-lg leading-relaxed text-[#9caeb8]">
-              Создайте проект, добавьте удобный способ интеграции и сформируйте
-              счёт. Клиент оплачивает его в выбранной валюте, а вы сразу видите
-              статус операции и поступление средств в личном кабинете. API и
-              Webhook передают обновления в вашу систему автоматически.
+              Create a project, add your preferred integration method, and
+              generate an invoice. Your customer pays in their chosen currency,
+              while you instantly see the transaction status and incoming funds
+              in your dashboard. API and webhooks automatically send updates to
+              your system.
             </p>
           </div>
           <div className="mt-10 overflow-hidden rounded-xl border border-white/[.1] bg-[#0b1120] shadow-[0_24px_70px_rgba(0,0,0,.28)] md:mt-14">
             <img
               src={API_IMAGE}
-              alt="Интерфейс подключения API и Webhook"
+              alt="API and webhook integration interface"
               className="h-auto w-full"
             />
           </div>
@@ -444,21 +427,21 @@ function App() {
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-                Личный кабинет
+                Dashboard
               </p>
               <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                Управляйте всеми депозитами из одного окна
+                Manage all deposits from one place
               </h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-[#9caeb8]">
-                Панель CryptoCloud объединяет депозиты, балансы и технические
-                настройки в одном эко-системе.
+                The CryptoCloud dashboard brings together deposits, balances,
+                and technical settings in one ecosystem.
               </p>
-              <a
-                href="#top"
+              <button
+                onClick={handleOpen}
                 className="mt-8 inline-flex rounded-xl border border-white/15 bg-[#162338] px-5 py-3 text-sm font-semibold transition hover:border-[#3385f0]"
               >
-                Посмотреть демо кабинета
-              </a>
+                View dashboard demo
+              </button>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {dashboardTools.map(([number, title, text]) => (
@@ -485,15 +468,14 @@ function App() {
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-                Тарифы
+                Pricing
               </p>
               <h2 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl">
-                Выберите удобный формат сотрудничества
+                Choose the plan that works for you
               </h2>
             </div>
             <p className="max-w-sm text-[#9caeb8] italic">
-              Начните бесплатно и переходите на следующий тариф вместе с ростом
-              вашего бизнеса.
+              Start for free and move to the next plan as your business grows.
             </p>
           </div>
           <div className="mt-14 grid gap-4 lg:grid-cols-3">
@@ -503,7 +485,7 @@ function App() {
                 const version = tariff.active_version;
                 const isFree = tariff.plan_type === "free";
                 const visual = tariffAccents[index % tariffAccents.length];
-                const period = `${version.periods.count} ${version.periods.unit === "month" ? "месяц" : version.periods.unit}`;
+                const period = `${version.periods.count} ${version.periods.unit === "month" ? "month" : version.periods.unit}`;
 
                 return (
                   <article
@@ -548,7 +530,7 @@ function App() {
                           >
                             ✓
                           </span>
-                          {version.tokens_per_period} токенов на период
+                          {version.tokens_per_period} tokens per period
                         </li>
                         {/* <li className="flex items-center gap-3">
                           <span
@@ -558,8 +540,8 @@ function App() {
                             ✓
                           </span>
                           {tariff.purchase_mode === "repeatable"
-                            ? "Повторная покупка"
-                            : "Разовая покупка"}
+                            ? "Recurring purchase"
+                            : "One-time purchase"}
                         </li> */}
                         <li className="flex items-center gap-3">
                           <span
@@ -572,10 +554,13 @@ function App() {
                         </li>
                       </ul>
                     </div>
-                    <button className="relative mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245da8] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#2b71cc]">
+                    <button
+                      onClick={handleOpen}
+                      className="relative mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-[#245da8] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#2b71cc]"
+                    >
                       {isFree
-                        ? "Попробовать бесплатно"
-                        : `Купить ${version.price_amount} ${version.currency}`}{" "}
+                        ? "Try for free"
+                        : `Buy for ${version.price_amount} ${version.currency}`}{" "}
                       <Arrow />
                     </button>
                   </article>
@@ -586,9 +571,9 @@ function App() {
             <div className="pointer-events-none absolute -left-8 top-1/2 size-28 -translate-y-1/2 rounded-full bg-white/25 blur-3xl" />
             <div className="pointer-events-none absolute -right-8 top-1/2 size-28 -translate-y-1/2 rounded-full bg-[#057bb9]/20 blur-3xl" />
             <p className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-base font-semibold text-[#eeeeee] sm:text-lg">
-              Зарегистрируйтесь и получите
-              <span className="font-extrabold text-[#e6e6e6]">200 токенов</span>
-              на тестирование в подарок
+              Sign up and get
+              <span className="font-extrabold text-[#e6e6e6]">200 tokens</span>
+              for testing as a gift
             </p>
           </div>
         </div>
@@ -598,10 +583,10 @@ function App() {
         <div className="mx-auto max-w-[1240px]">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-              Прозрачные условия
+              Transparent terms
             </p>
             <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              Принцип работы и стоимость
+              How it works and pricing
             </h2>
           </div>
 
@@ -611,13 +596,13 @@ function App() {
                 %
               </span>
               <h3 className="mt-8 text-2xl font-semibold">
-                Стоимость приема депозитов
+                Deposit acceptance cost
               </h3>
               <p className="mt-4 text-xl font-semibold text-[#7db1f5]">
-                Комиссия за прием депозитов — 0%.
+                The deposit acceptance fee is 0%.
               </p>
               <p className="mt-4 leading-relaxed text-[#9caeb8]">
-                Вы платите только за API-токены.
+                You only pay for API tokens.
               </p>
             </article>
 
@@ -626,12 +611,12 @@ function App() {
                 ◈
               </span>
               <h3 className="mt-8 text-2xl font-semibold">
-                Прямой доступ к кошелькам и аккумуляции
+                Direct access to wallets and fund accumulation
               </h3>
               <p className="mt-4 leading-relaxed text-[#9caeb8]">
-                Мы не храним ваши средства у себя — у вас всегда остается прямой
-                доступ к кошелькам. Вы можете подключить свой кошелек к любому
-                крипто приложению и управлять своими депозитами.
+                We never hold your funds — you always retain direct access to
+                your wallets. You can connect your wallet to any crypto app and
+                manage your deposits at any time.
               </p>
             </article>
           </div>
@@ -639,7 +624,7 @@ function App() {
           <div className="mt-16 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-                Как происходит прием депозита
+                How deposit acceptance works
               </p>
             </div>
           </div>
@@ -648,27 +633,27 @@ function App() {
             {[
               [
                 "01",
-                "Создание запроса",
-                "Вы создаете запрос для приема депозита.",
-                "10 токенов",
+                "Create an invoice",
+                "You create an invoice to accept a deposit.",
+                "10 tokens",
               ],
               [
                 "02",
-                "Поступление депозита",
-                "Депозит поступает на один из ваших кошельков.",
-                "0 токенов",
+                "Deposit received",
+                "The deposit arrives in one of your wallets.",
+                "0 tokens",
               ],
               [
                 "03",
-                "AML-проверка",
-                "Транзакция проходит AML-проверку.",
-                "4 токена",
+                "AML check",
+                "The transaction undergoes an AML check.",
+                "4 tokens",
               ],
               [
                 "04",
-                "Аккумуляция средств",
-                "Если AML-проверка пройдена успешно, средства автоматически аккумулируются на одном из  ваших свип-кошельков.",
-                "6 токенов",
+                "Fund accumulation",
+                "If the AML check passes, funds are automatically accumulated in one of your sweep wallets.",
+                "6 tokens",
               ],
             ].map(([number, title, text, tokens]) => (
               <article
@@ -702,13 +687,14 @@ function App() {
                 FAQ
               </p>
               <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                Остались вопросы?
+                Still have questions?
               </h2>
               <p className="mt-5 max-w-sm text-lg text-[#9caeb8]">
-                Здесь собрали главное о запуске и работе с платформой.
+                Here are the essentials about getting started and using the
+                platform.
               </p>
               <button className="mt-8 rounded-xl bg-[#245da8] px-5 py-3 text-sm font-semibold text-white hover:bg-[#2b71cc]">
-                Написать в поддержку
+                Contact support
               </button>
             </div>
             <div className="divide-y divide-white/10">
