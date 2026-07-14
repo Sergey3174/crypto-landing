@@ -5,6 +5,7 @@ import BG from "./assets/BG.png";
 import TRC from "./assets/TRC-20.svg";
 import BEP from "./assets/BEP-20.svg";
 import ERC from "./assets/ERC-20.svg";
+import { MaterialSymbol } from "react-material-symbol-icons";
 
 const Arrow = () => (
   <span aria-hidden="true" className="text-lg leading-none">
@@ -14,17 +15,38 @@ const Arrow = () => (
 
 const features = [
   {
-    icon: "◌",
+    icon: (
+      <MaterialSymbol
+        icon="filter_tilt_shift"
+        size={32}
+        color="#2196f3"
+        filled
+      />
+    ),
     title: "Instant deposits",
     text: "Accept deposits from anywhere in the world — funds arrive instantly.",
   },
   {
-    icon: "⌘",
+    icon: (
+      <MaterialSymbol
+        icon="keyboard_command_key"
+        size={32}
+        color="#2196f3"
+        filled
+      />
+    ),
     title: "Simple integration",
     text: "Ready-made modules, API, and clear documentation to get started in minutes.",
   },
   {
-    icon: "⌁",
+    icon: (
+      <MaterialSymbol
+        icon="data_exploration"
+        size={32}
+        color="#2196f3"
+        filled
+      />
+    ),
     title: "Clear analytics",
     text: "Track transactions, balances, deposit statuses, and AML check results in one dashboard.",
   },
