@@ -9,7 +9,7 @@ import { MaterialSymbol } from "react-material-symbol-icons";
 
 const Arrow = () => (
   <span aria-hidden="true" className="text-lg leading-none">
-    ↗
+    <MaterialSymbol icon="call_made" size={18} filled />
   </span>
 );
 
@@ -231,10 +231,10 @@ function App() {
         </div>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="grid size-10 place-items-center rounded-xl border border-white/20 text-xl md:hidden"
+          className="grid size-10 place-items-center  rounded-xl border border-white/20 text-xl md:hidden"
           aria-label="Open menu"
         >
-          ☰
+          <MaterialSymbol icon="menu" size={28} />
         </button>
         {menuOpen && (
           <div className="absolute left-6 right-6 top-20 rounded-xl border border-white/10 bg-[#162338] p-5 shadow-xl md:hidden">
@@ -630,7 +630,7 @@ function App() {
 
             <article className="rounded-2xl border border-white/[.1] bg-[#162338] p-7 sm:p-8">
               <span className="grid size-12 place-items-center rounded-xl bg-[#203d65] text-xl text-[#7db1f5]">
-                ◈
+                <MaterialSymbol icon="nearby" size={30} filled />
               </span>
               <h3 className="mt-8 text-2xl font-semibold">
                 Direct access to wallets and fund accumulation
