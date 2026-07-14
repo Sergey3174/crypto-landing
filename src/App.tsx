@@ -11,7 +11,7 @@ const Arrow = () => (
 const features = [
   {
     icon: "◌",
-    title: "Мгновенные платежи",
+    title: "Мгновенные депозиты",
     text: "Приём депозитов из любой точки мира — средства поступают моментально",
   },
   {
@@ -30,8 +30,8 @@ const steps = [
   ["01", "Создайте аккаунт", "Зарегистрируйтесь и добавьте свой проект."],
   [
     "02",
-    "Подключите оплату",
-    "Выберите API, ссылку на оплату или готовый модуль.",
+    "Выберите тариф",
+    "Выберите тариф, соответствующий вашим потребностям.",
   ],
   [
     "03",
@@ -44,7 +44,7 @@ const dashboardTools = [
   [
     "01",
     "Баланс и операции",
-    "Контролируйте поступления, комиссии и движение средств в реальном времени.",
+    "Контролируйте поступления, токены и движение средств в реальном времени.",
   ],
   [
     "02",
@@ -59,7 +59,7 @@ const dashboardTools = [
   [
     "04",
     "Аналитика",
-    "Смотрите ключевые показатели, динамику платежей и активность клиентов.",
+    "Смотрите ключевые показатели, динамику депозитов и активность клиентов.",
   ],
   [
     "05",
@@ -94,11 +94,19 @@ const faqs = [
   ],
   [
     "Есть ли комиссия за подключение?",
-    "Подключение и создание аккаунта бесплатны. Условия обработки платежей зависят от выбранного тарифа.",
+    "Подключение и создание аккаунта бесплатны. Условия обработки депозитов зависят от выбранного тарифа.",
   ],
   [
     "В каких сетях мы принимаем депозиты?",
     "Мы принимаем депозиты в сетях USDT TRC20, USDT ERC20 и USDT BEP20.",
+  ],
+  [
+    "Могу ли я получить прямой доступ к одному из своих кошельков в админ панели?",
+    "Да, в админ панели вы можете получить сид-фразу или апи-ключ от выбранного вами кошелька",
+  ],
+  [
+    "Что будет если депозит не пройдет AML-проверку?",
+    "1. Данный кошелек не будет участвовать в приеме депозитов.\n2. Вы получите уведомление, что депозит не прошел AML-проверку. Мы советуем подключить данный кошелек к вашему крипто-приложению и вернуть депозит отправителю.",
   ],
 ];
 
@@ -286,7 +294,7 @@ function App() {
               <div className="flex items-center justify-between border-b border-white/10 pb-5 text-sm text-[#9caeb8]">
                 <span className="flex items-center gap-2">
                   <i className="size-2 rounded-full bg-[#3385f0]" />
-                  Обзор платежей
+                  Обзор депозитов
                 </span>
               </div>
               <div className="py-8">
@@ -339,10 +347,10 @@ function App() {
             Всё необходимое
           </p>
           <div className="mt-5 flex flex-col justify-between gap-6 md:flex-row">
-            <h2 className="max-w-2xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+            <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
               Автоматическая обработка депозитов без лишней сложности
             </h2>
-            <p className="max-w-sm text-[#9caeb8]">
+            <p className="max-w-sm text-[#9caeb8] italic">
               Инструмент для автоматического приёма депозитов
             </p>
           </div>
@@ -409,8 +417,7 @@ function App() {
           </p>
           <div>
             <h2 className="text-4xl max-w-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">
-              Подключите прием депозитов один раз — всё остальное платформа
-              сделает сама
+              Подключите систему один раз
             </h2>
             <p className="mt-6  text-lg leading-relaxed text-[#9caeb8]">
               Создайте проект, добавьте удобный способ интеграции и сформируйте
@@ -443,8 +450,8 @@ function App() {
                 Управляйте всеми депозитами из одного окна
               </h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-[#9caeb8]">
-                Админка CryptoCloud объединяет платежи, балансы и технические
-                настройки — без таблиц и ручной сверки.
+                Панель CryptoCloud объединяет депозиты, балансы и технические
+                настройки в одном эко-системе.
               </p>
               <a
                 href="#top"
@@ -481,10 +488,10 @@ function App() {
                 Тарифы
               </p>
               <h2 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl">
-                Выберите формат работы
+                Выберите удобный формат сотрудничества
               </h2>
             </div>
-            <p className="max-w-sm text-[#9caeb8]">
+            <p className="max-w-sm text-[#9caeb8] italic">
               Начните бесплатно и переходите на следующий тариф вместе с ростом
               вашего бизнеса.
             </p>
@@ -610,8 +617,7 @@ function App() {
                 Комиссия за прием депозитов — 0%.
               </p>
               <p className="mt-4 leading-relaxed text-[#9caeb8]">
-                Вы платите только за API-токены. Сервис работает на основе
-                API-токенов.
+                Вы платите только за API-токены.
               </p>
             </article>
 
@@ -625,7 +631,7 @@ function App() {
               <p className="mt-4 leading-relaxed text-[#9caeb8]">
                 Мы не храним ваши средства у себя — у вас всегда остается прямой
                 доступ к кошелькам. Вы можете подключить свой кошелек к любому
-                крипто кошельку и в любой момент вывести свои средства.
+                крипто приложению и управлять своими депозитами.
               </p>
             </article>
           </div>
@@ -640,26 +646,43 @@ function App() {
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {[
-              ["01", "Создание счета", "Вы создаете счет для приема депозита."],
+              [
+                "01",
+                "Создание запроса",
+                "Вы создаете запрос для приема депозита.",
+                "10 токенов",
+              ],
               [
                 "02",
                 "Поступление депозита",
                 "Депозит поступает на один из ваших кошельков.",
+                "0 токенов",
               ],
-              ["03", "AML-проверка", "Транзакция проходит AML-проверку."],
+              [
+                "03",
+                "AML-проверка",
+                "Транзакция проходит AML-проверку.",
+                "4 токена",
+              ],
               [
                 "04",
                 "Аккумуляция средств",
-                "Если AML-проверка пройдена успешно, средства автоматически аккумулируются на одном из ваших кошельков.",
+                "Если AML-проверка пройдена успешно, средства автоматически аккумулируются на одном из  ваших свип-кошельков.",
+                "6 токенов",
               ],
-            ].map(([number, title, text]) => (
+            ].map(([number, title, text, tokens]) => (
               <article
                 key={number}
                 className="relative min-h-64 overflow-hidden rounded-2xl border border-white/[.1] bg-[#162338] p-6"
               >
-                <span className="text-sm font-bold text-[#7db1f5]">
-                  {number}
-                </span>
+                <div className="flex justify-between">
+                  <span className="text-sm font-bold text-[#7db1f5]">
+                    {number}
+                  </span>
+                  <span className="text-sm font-bold text-[#7db1f5]">
+                    {tokens}
+                  </span>
+                </div>
                 <div className="my-10 h-px bg-white/10" />
                 <h4 className="text-xl font-semibold">{title}</h4>
                 <p className="mt-3 text-sm leading-relaxed text-[#9caeb8]">
@@ -701,7 +724,7 @@ function App() {
                     </div>
                   </button>
                   {openFaq === i && (
-                    <p className="max-w-xl pt-4 leading-relaxed text-[#9caeb8]">
+                    <p className="max-w-xl whitespace-pre-line pt-4 leading-relaxed text-[#9caeb8]">
                       {a}
                     </p>
                   )}
