@@ -382,7 +382,7 @@ function App() {
 
       <section id="how" className="px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-[1240px]">
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
                 Three steps
@@ -391,7 +391,7 @@ function App() {
                 From sign-up to your first deposit
               </h2>
             </div>
-            <p className="self-end italic max-w-md text-lg leading-relaxed text-[#9caeb8]">
+            <p className="self-end italic  text-lg leading-relaxed text-[#9caeb8]">
               A clear process for teams of any size. No complicated setup or
               long waits.
             </p>
