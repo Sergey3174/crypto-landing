@@ -411,32 +411,29 @@ function App() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-16 lg:px-10 lg:py-24">
-        <div className="mx-auto max-w-[1240px] border-y border-white/[.1] py-10 md:py-14">
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
-            How it works
-          </p>
-          <div>
-            <h2 className="text-4xl max-w-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">
-              Connect your system once
-            </h2>
-            <p className="mt-6  text-lg leading-relaxed text-[#9caeb8]">
-              Create a project, add your preferred integration method, and
-              generate an invoice. Your customer pays in their chosen currency,
-              while you instantly see the transaction status and incoming funds
-              in your dashboard. API and webhooks automatically send updates to
-              your system.
+          <div className="mt-20 border-t border-white/[.1] pt-20 md:mt-24 md:pt-24">
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[.16em] text-[#589bf3]">
+              How it works
             </p>
-          </div>
-          <div className="mt-10 overflow-hidden rounded-xl border border-white/[.1] bg-[#0b1120] shadow-[0_24px_70px_rgba(0,0,0,.28)] md:mt-14">
-            <img
-              src={API_IMAGE}
-              alt="API and webhook integration interface"
-              className="h-auto w-full"
-            />
+            <div>
+              <h2 className="text-4xl max-w-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl">
+                Connect your system once
+              </h2>
+              <p className="mt-6  text-lg leading-relaxed text-[#9caeb8]">
+                Create a project, add your preferred integration method, and
+                generate an invoice. Your customer pays in their chosen
+                currency, while you instantly see the transaction status and
+                incoming funds in your dashboard. API and webhooks automatically
+                send updates to your system.
+              </p>
+            </div>
+            <div className="mt-10 overflow-hidden rounded-xl border border-white/[.1] bg-[#0b1120] shadow-[0_24px_70px_rgba(0,0,0,.28)] md:mt-14">
+              <img
+                src={API_IMAGE}
+                alt="API and webhook integration interface"
+                className="h-auto w-full"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -682,7 +679,7 @@ function App() {
             ].map(([number, title, text, tokens]) => (
               <article
                 key={number}
-                className="relative min-h-64 overflow-hidden rounded-2xl border border-white/[.1] bg-[#162338] p-6"
+                className="relative min-h-58 overflow-hidden rounded-2xl border border-white/[.1] bg-[#162338] p-6"
               >
                 <div className="flex justify-between">
                   <span className="text-sm font-bold text-[#7db1f5]">
@@ -692,7 +689,7 @@ function App() {
                     {tokens}
                   </span>
                 </div>
-                <div className="my-10 h-px bg-white/10" />
+                <div className="my-6 h-px bg-white/10" />
                 <h4 className="text-xl font-semibold">{title}</h4>
                 <p className="mt-3 text-sm leading-relaxed text-[#9caeb8]">
                   {text}
@@ -703,7 +700,7 @@ function App() {
         </div>
       </section>
 
-      <section id="faq" className="px-6 pb-20 lg:px-10 lg:pb-28">
+      <section id="faq" className="px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-[1240px] rounded-2xl border border-white/[.12] bg-[#1a2840] px-6 py-14 sm:px-10 lg:p-16">
           <div className="grid gap-12 lg:grid-cols-[.78fr_1.22fr]">
             <div>
