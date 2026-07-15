@@ -160,8 +160,8 @@ function App() {
           className="aurora-logo flex items-center gap-2 text-[22px] font-medium tracking-[-.8px]"
           href="#top"
         >
-          <img src="/aurora.svg" className="h-10 w-10" alt="CryptoCloud" />
-          <span className="aurora-word">CryptoCloud</span>
+          <img src="/aurora.svg" className="h-10 w-10" alt="Crypto42" />
+          <span className="aurora-word">Crypto42</span>
         </a>
         <div className="hidden items-center gap-6 text-sm font-medium text-[#9caeb8] md:flex">
           <a
@@ -452,8 +452,8 @@ function App() {
                 Manage all deposits from one place
               </h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-[#9caeb8]">
-                The CryptoCloud dashboard brings together deposits, balances,
-                and technical settings in one ecosystem.
+                The Crypto42 dashboard brings together deposits, balances, and
+                technical settings in one ecosystem.
               </p>
               <button
                 onClick={handleOpen}
@@ -748,10 +748,10 @@ function App() {
             className="aurora-logo flex items-center gap-2 text-lg font-medium tracking-[-.5px]"
             href="#top"
           >
-            <img src="/aurora.svg" className="h-8 w-8" alt="CryptoCloud" />
-            <span className="aurora-word">CryptoCloud</span>
+            <img src="/aurora.svg" className="h-8 w-8" alt="Crypto42" />
+            <span className="aurora-word">Crypto42</span>
           </a>
-          <p>© 2026 CryptoCloud. Digital payments made simple.</p>
+          <p>© 2026 Crypto42. Digital payments made simple.</p>
           <div className="flex gap-5">
             <a href="#top">Privacy</a>
             <a href="#top">Terms</a>
